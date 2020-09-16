@@ -17,6 +17,17 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  *)
 
+module List = struct
+  include List
+
+  let map f list =
+    let rec loop acc = function
+      | [] -> List.rev acc
+      | x :: xs -> loop (f x :: acc) xs
+    in
+    loop [] list
+end
+
 module type DATA = sig
   type 'a data
   type 'a patch
